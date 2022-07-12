@@ -1,0 +1,12 @@
+[submodule "extern/assimp"]
+	path = extern/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "extern/imguizmo"]
+	path = extern/imguizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
+[submodule "extern/tracy"]
+	path = extern/tracy
+	url = https://github.com/wolfpld/tracy.git
+[submodule "extern/sdl"]
+	path = extern/sdl
+	url = https://github.com/libsdl-org/SDL.git
