@@ -104,12 +104,12 @@ void StaticDraw::DrawDepthMap(Renderer::LowLevel::LowRenderer& i_renderer, const
 
 bool StaticDraw::IsOpaque() const
 {
-	if (model.material.tint.w < 1.f)
-		return false; // default textures may be transparent
-    else if (!model.diffuseTex.expired())
-	    return model.diffuseTex.lock()->channels != 4;
-    else
-        return true;
+	if (model.diffuseTex.expired())
+		return model.material.tint.w == 1.f;
+	else if (model.material.tint.w == 1.f)
+		return model.diffuseTex.lock()->channels != 4;
+	else
+		return false;
 }
 
 void StaticDraw::SetMesh(const std::string& i_path)

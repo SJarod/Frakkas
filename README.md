@@ -1,10 +1,13 @@
 /!\ ---- /!\  
-This repository is a "wiped" version of the original school-intern GitLab repository. It excludes the assets used by Frakkarena, which can be found on https://sjarod.itch.io/frakkarena.  
+This repository is a "wiped" version of the original school-intern GitLab repository. It excludes the assets used by Frakkarena, whiches can be found on https://sjarod.itch.io/frakkarena.  
 The assimp submodule is meant to be an assimp fork, it is replaced by the real branch in this repository.  
 /!\ ---- /!\
 
 
 All rights reserved for Frakkas team.  
+Florian Marcellot  
+Manon Méhalin  
+Jarod Sengkeo  
 
 # FRAKKAS ENGINE => 'FRAKKARENA'  
 

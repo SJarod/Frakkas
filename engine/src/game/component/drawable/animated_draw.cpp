@@ -198,10 +198,12 @@ void AnimatedDraw::DrawDepthMap(Renderer::LowLevel::LowRenderer& i_renderer, con
 
 bool AnimatedDraw::IsOpaque() const
 {
-	if (skmodel.diffuseTex.expired() || skmodel.material.tint.w < 1.f)
-		return false; // default textures may be transparent
-
-	return skmodel.diffuseTex.lock()->channels != 4;
+	if (skmodel.diffuseTex.expired())
+		return skmodel.material.tint.w == 1.f;
+	else if (skmodel.material.tint.w == 1.f)
+		return skmodel.diffuseTex.lock()->channels != 4;
+	else
+		return false;
 }
 
 void AnimatedDraw::SetMesh(const std::string& i_path)

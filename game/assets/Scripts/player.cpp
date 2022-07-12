@@ -178,12 +178,16 @@ void Player::Move()
 
     float frameSpeed = (state == EPlayerState::ATTACK ? speedWhenAttack : speed) * Time::GetFixedDeltaTime();
 
-    strafeVelocity = Maths::Clamp( strafeVelocity + gamepadDir.x, -1.f, 1.f) * frameSpeed;
-    forwardVelocity = Maths::Clamp( forwardVelocity + gamepadDir.y, -1.f, 1.f) * frameSpeed;
+    strafeVelocity = Maths::Clamp( strafeVelocity + gamepadDir.x, -1.f, 1.f);
+    forwardVelocity = Maths::Clamp( forwardVelocity + gamepadDir.y, -1.f, 1.f);
 
     Vector3 rot = camera->Rotation();
-    XZVelocity.x = Maths::Sin(rot.y) * forwardVelocity + Maths::Cos(rot.y) * strafeVelocity;
-    XZVelocity.y = Maths::Cos(rot.y) * forwardVelocity - Maths::Sin(rot.y) * strafeVelocity;
+    Vector3 dir;
+    dir.x = Maths::Sin(rot.y) * forwardVelocity + Maths::Cos(rot.y) * strafeVelocity;
+    dir.y = Maths::Cos(rot.y) * forwardVelocity - Maths::Sin(rot.y) * strafeVelocity;
+    dir = dir.Normalize();
+
+    XZVelocity = dir * frameSpeed;
 
     Vector3 translation = Vector3(XZVelocity.x, rigidBody->velocity.y, -XZVelocity.y);
     rigidBody->velocity = translation + additionalTranslation;

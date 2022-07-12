@@ -70,15 +70,13 @@ Resources::DefaultTexture::DefaultTexture()
     colorNames.emplace_back("blue");
     colorNames.emplace_back("black");
     colorNames.emplace_back("white");
-	colorNames.emplace_back("transparent");
 
-	std::vector<Vector4> colors;
-	colors.emplace_back(Vector4{ 1.f, 0.f, 0.f, 1.f });
-	colors.emplace_back(Vector4{ 0.f, 1.f, 0.f, 1.f });
-	colors.emplace_back(Vector4{ 0.f, 0.f, 1.f, 1.f });
-    colors.emplace_back(Vector4{ 0.f, 0.f, 0.f, 1.f });
-    colors.emplace_back(Vector4{ 1.f, 1.f, 1.f, 1.f });
-    colors.emplace_back(Vector4{ 1.f, 1.f, 1.f, 0.5f });
+	std::vector<Vector3> colors;
+	colors.emplace_back(Vector3{ 1.f, 0.f, 0.f });
+	colors.emplace_back(Vector3{ 0.f, 1.f, 0.f });
+	colors.emplace_back(Vector3{ 0.f, 0.f, 1.f });
+    colors.emplace_back(Vector3{ 0.f, 0.f, 0.f });
+    colors.emplace_back(Vector3{ 1.f, 1.f, 1.f });
 
 	{
 		GLuint tex;
@@ -93,7 +91,7 @@ Resources::DefaultTexture::DefaultTexture()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		Vector4 pink = { 1.f, 0.f, 1.f, 1.f };
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_FLOAT, pink.element);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1, 1, 0, GL_RGB, GL_FLOAT, pink.element);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -113,7 +111,7 @@ Resources::DefaultTexture::DefaultTexture()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_FLOAT, colors[i].element);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1, 1, 0, GL_RGB, GL_FLOAT, colors[i].element);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -126,7 +124,7 @@ GLuint DefaultTexture::ChooseColor(const std::string_view& i_color) const
 	if (textures.find(i_color.data()) != textures.end())
 		return textures.find(i_color.data())->second;
 	else
-		return textures.find("transparent")->second;
+		return textures.find("error")->second;
 }
 
 bool DefaultTexture::Found(const std::string_view& i_color) const

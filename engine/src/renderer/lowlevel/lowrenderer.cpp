@@ -231,6 +231,7 @@ void LowRenderer::BeginFrame(const DepthFramebuffer& i_fbo, const float i_bias) 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_CLAMP);
 
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glPolygonOffset(i_bias, i_bias);
@@ -246,6 +247,7 @@ void LowRenderer::ContinueFrame(const Framebuffer& i_fbo) const
 void LowRenderer::EndFrame() const
 {
 	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_DEPTH_CLAMP);
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glDisable(GL_BLEND);

@@ -2178,7 +2178,7 @@
 >meshPath
 	ProceduralCube
 >texturePath
-	transparent
+	white
 >model.material.ambient
 	0.8, 0.8, 0.8
 >model.material.diffuse
@@ -2188,7 +2188,7 @@
 >model.material.emissive
 	0, 0, 0
 >model.material.tint
-	0, 0, 0, 1
+	0, 0, 0, 0.5
 >model.material.shininess
 	32
 >BoxCollider
